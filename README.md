@@ -5,20 +5,33 @@ A dark, one-screen dashboard for your day: what to do now, your schedule and tas
 ![The dashboard with demo data](docs/screenshot.png)
 <sub>Demo data. Every person, company and email here is made up.</sub>
 
-## Get your own copy
+## Set it up with Claude
 
-Make a private copy from this template (or click **Use this template** on GitHub):
+Open [Claude Code](https://claude.com/claude-code) (the Claude desktop app's **Code** tab, or `claude` in a terminal) in the folder where you keep projects, and paste this prompt:
 
-```bash
-gh repo create my-dashboard --template anmolsingh0219/personal-dashboard-template --private --clone
-cd my-dashboard
+```text
+Set up my own copy of the personal dashboard template at
+https://github.com/anmolsingh0219/personal-dashboard-template
+
+1. Make me a private copy. If the GitHub CLI (gh) is installed and logged in, run:
+   gh repo create my-dashboard --template anmolsingh0219/personal-dashboard-template --private --clone
+   (ask me first if I'd like a different name than "my-dashboard"). Otherwise, clone it
+   with git into a new "my-dashboard" folder. Work inside that folder from then on.
+2. Read CLAUDE.md and SETUP_WITH_CLAUDE.md there, and follow SETUP_WITH_CLAUDE.md phase
+   by phase: interview me, customize it for me, run it locally, deploy it to my Cloudflare
+   account behind a login only I can use, then set up the scheduled Claude refresh and
+   deadline alerts on my phone.
+3. I'm not necessarily a developer: explain each step in a sentence and tell me exactly
+   what to click when I need to do something in a browser. Ask before creating anything
+   in my accounts (GitHub, Cloudflare, scheduled tasks), and never show or commit my
+   keys and passwords.
 ```
 
-**Then set it up with Claude:** open the folder in [Claude Code](https://claude.com/claude-code) (or the Claude desktop app's Code tab) and say:
+Claude asks about your email, markets, portfolios and schedule, then customizes the code, runs it, deploys it to your free Cloudflare account, and sets up the daily refresh and phone alerts.
 
-> Set up this dashboard for me.
+**Already have a copy?** Open its folder in Claude Code and say *"Set up this dashboard for me."* The steps also work by hand; see [SETUP_WITH_CLAUDE.md](SETUP_WITH_CLAUDE.md).
 
-Claude follows [SETUP_WITH_CLAUDE.md](SETUP_WITH_CLAUDE.md). It asks about your markets, email and schedule, customizes the code, runs it locally, deploys it to your Cloudflare account, and sets up the daily refresh and phone alerts. The steps work by hand too.
+**What you'll need:** a free [Cloudflare](https://dash.cloudflare.com/sign-up) account, [Node.js](https://nodejs.org) 22.18 or newer, and the Claude desktop app with the Gmail and Google Calendar connectors for the email and calendar panels. Claude checks these with you as it goes.
 
 ## What's on it
 
