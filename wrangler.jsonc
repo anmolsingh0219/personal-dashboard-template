@@ -1,0 +1,38 @@
+{
+  "$schema": "./node_modules/wrangler/config-schema.json",
+  // Also the Worker's name in Cloudflare and part of its URL: https://<name>.<your-subdomain>.workers.dev
+  "name": "dashboard",
+  "main": "./worker/index.ts",
+  "compatibility_date": "2026-09-22",
+  "workers_dev": true,
+  // Per-version preview URLs would be a second entry point to protect; not needed here.
+  "preview_urls": false,
+  "assets": {
+    "not_found_handling": "single-page-application",
+    "run_worker_first": ["/api/*"]
+  },
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_name": "dashboard",
+      // Printed by `npx wrangler d1 create dashboard` (SETUP_WITH_CLAUDE.md, step 5).
+      "database_id": "REPLACE_WITH_YOUR_D1_DATABASE_ID",
+      "migrations_dir": "migrations"
+    }
+  ],
+  // UTC. One per portfolio in shared/config.ts (its snapshotCron, shortly after that market
+  // closes), plus the hourly deadline-alert check. tests/config.test.ts keeps these in sync.
+  "triggers": { "crons": ["15 21 * * 1-5", "15 10 * * 1-5", "5 * * * *"] },
+  "vars": {
+    // Cloudflare Access (Zero Trust). The API refuses every request until both are set:
+    // your team domain ("yourteam.cloudflareaccess.com") and the Access application's AUD tag.
+    "ACCESS_TEAM_DOMAIN": "",
+    "ACCESS_AUD": "",
+    // Web Push sender identity for deadline alerts. `npm run setup` fills in the public key and
+    // keeps the private half in .dev.vars (upload it as the VAPID_PRIVATE_KEY secret).
+    // VAPID_SUBJECT is your dashboard's https:// URL.
+    "VAPID_PUBLIC_KEY": "",
+    "VAPID_SUBJECT": ""
+  },
+  "observability": { "enabled": true }
+}

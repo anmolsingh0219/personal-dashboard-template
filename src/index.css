@@ -1,0 +1,69 @@
+@import "tailwindcss";
+
+/* Dark-only theme. Chrome/ink/status values follow the dataviz reference palette's dark column. */
+@theme {
+  --color-page: #0d0d0d;
+  --color-card: #1a1a19;
+  --color-raised: #242422;
+  --color-line: #2c2c2a;
+  --color-axis: #383835;
+  --color-ink: #f5f5f2;
+  --color-ink-2: #c3c2b7;
+  --color-muted: #898781;
+  --color-accent: #3987e5;
+  --color-accent-soft: rgb(57 135 229 / 0.16);
+  --color-violet: #9085e9;
+  --color-violet-soft: rgb(144 133 233 / 0.14);
+  --color-good: #0ca30c;
+  --color-bad: #ef6b6b;
+  --color-warn: #fab219;
+  --font-sans: system-ui, -apple-system, "Segoe UI", sans-serif;
+}
+
+:root {
+  color-scheme: dark;
+}
+
+html,
+body {
+  background: var(--color-page);
+  color: var(--color-ink);
+  -webkit-font-smoothing: antialiased;
+  -webkit-tap-highlight-color: transparent;
+}
+
+body {
+  padding: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);
+}
+
+::selection {
+  background: var(--color-accent-soft);
+}
+
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-line) transparent;
+}
+
+@utility input {
+  @apply w-full rounded-lg border border-line bg-raised px-3 py-2 text-sm text-ink placeholder:text-muted outline-none transition focus:border-accent/70;
+}
+@utility btn {
+  @apply inline-flex items-center justify-center gap-1.5 rounded-lg px-3 py-1.5 text-sm font-medium transition disabled:opacity-40 disabled:pointer-events-none;
+}
+@utility btn-primary {
+  @apply btn bg-accent text-white hover:bg-accent/85;
+}
+@utility btn-ghost {
+  @apply btn text-ink-2 hover:bg-raised hover:text-ink;
+}
+@utility icon-btn {
+  @apply inline-flex size-7 items-center justify-center rounded-md text-muted transition hover:bg-raised hover:text-ink disabled:opacity-40;
+}
+@utility chip {
+  @apply inline-flex items-center gap-1 rounded-md bg-raised px-1.5 py-0.5 text-[11px] font-medium leading-4 text-ink-2 whitespace-nowrap;
+}
+
+.tabular {
+  font-variant-numeric: tabular-nums;
+}

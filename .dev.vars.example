@@ -1,0 +1,20 @@
+# Copy to .dev.vars for local development (never commit .dev.vars).
+# In production set these with `npx wrangler secret put <NAME>`.
+
+# Lets localhost skip the Cloudflare Access check. Ignored on any non-localhost host.
+DEV_AUTH_BYPASS=1
+
+# 32 random bytes, base64 — encrypts Google tokens at rest. `npm run setup` generates it, or:
+#   node -e "console.log(require('crypto').randomBytes(32).toString('base64'))"
+TOKEN_KEY=
+
+# Google Cloud OAuth client (Web application). See README → "Google setup".
+GOOGLE_CLIENT_ID=
+GOOGLE_CLIENT_SECRET=
+
+# Optional: fallback stock quotes if Yahoo is unavailable — https://finnhub.io
+FINNHUB_API_KEY=
+
+# Phone notifications (Web Push). Private half of the VAPID key pair whose public half is
+# VAPID_PUBLIC_KEY in wrangler.jsonc. In production: npx wrangler secret put VAPID_PRIVATE_KEY
+VAPID_PRIVATE_KEY=
